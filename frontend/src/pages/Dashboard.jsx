@@ -30,12 +30,13 @@ function Dashboard() {
   }, []);
 
   const handleQuestionClick = (questionNumber) => {
+    alert(`Navigating to question ${questionNumber}`);
     navigate("/questionpage", { state: { questionNumber } });
   };
 
   return (
     <>
-      {/* Christmas Image */}
+      
       <div className="relative flex flex-col flex-1 overflow-y-auto overflow-x-hidden">
         <div
           className="w-screen h-[25vh] bg-cover bg-no-repeat bg-center"

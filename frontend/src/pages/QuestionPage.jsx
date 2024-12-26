@@ -1,28 +1,46 @@
-import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { useNavigate, useLocation } from "react-router-dom";
+import { BASE_URL } from "../constants/config";
 
 export default function QuestionPage() {
   const navigate = useNavigate();
+  const location = useLocation();
+  const { questionNumber } = location.state || {};
+
+  const [questionData, setQuestionData] = useState(null);
   const [selectedOption, setSelectedOption] = useState(null);
   const [isAnswered, setIsAnswered] = useState(false);
   const [modalOpen, setModalOpen] = useState(false);
   const [feedback, setFeedback] = useState("");
+  const [loading, setLoading] = useState(true);
 
-  const question = "What is the capital of France?";
-  const options = [
-    { id: 1, text: "Berlin" },
-    { id: 2, text: "Madrid" },
-    { id: 3, text: "Paris" },
-    { id: 4, text: "Rome" },
-  ];
-  const correctOption = 3;
+  useEffect(() => {
+    // Fetch question data from the backend
+    const fetchQuestionData = async () => {
+      try {
+        const response = await fetch(`${BASE_URL}/questionpage/question`);
+        if (response.ok) {
+          const data = await response.json();
+          setQuestionData(data);
+        } else {
+          console.error("Failed to fetch question data");
+        }
+      } catch (error) {
+        console.error("Error fetching question data:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchQuestionData();
+  }, [questionNumber]);
 
   const handleAnswer = (optionId) => {
     setSelectedOption(optionId);
     setIsAnswered(true);
     setModalOpen(true);
 
-    if (optionId === correctOption) {
+    if (optionId === questionData.correctOption) {
       setFeedback("Correct! 🎉");
     } else {
       setFeedback("Wrong! ❌");
@@ -32,13 +50,26 @@ export default function QuestionPage() {
   const closeModal = () => {
     setModalOpen(false);
     if (isAnswered) {
-      // Reset for the next question
       setSelectedOption(null);
       setIsAnswered(false);
       setFeedback("");
       navigate("/dashboard");
     }
   };
+
+  if (loading) {
+    return <div className="min-h-screen flex items-center justify-center">Loading...</div>;
+  }
+
+  if (!questionData) {
+    return (
+      <div className="min-h-screen flex items-center justify-center">
+        <p>Failed to load question. Please try again later.</p>
+      </div>
+    );
+  }
+
+  const { question, options } = questionData;
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-100 p-8">
@@ -54,7 +85,7 @@ export default function QuestionPage() {
               onClick={() => handleAnswer(option.id)}
               className={`w-full text-left py-3 px-4 border rounded-md ${
                 selectedOption === option.id
-                  ? option.id === correctOption
+                  ? option.id === questionData.correctOption
                     ? "bg-green-100 border-green-500"
                     : "bg-red-100 border-red-500"
                   : "hover:bg-gray-100"

@@ -8,6 +8,7 @@ from extensions import db
 from routes.authentication.login import login_bp
 from routes.property.property import property_bp
 from routes.dashboard.dashboard import dashboard_bp
+from routes.questionpage.questionpage import questionpage_bp
 
 # 
 def create_app():
@@ -33,6 +34,7 @@ def create_app():
     app.register_blueprint(login_bp)
     app.register_blueprint(property_bp)
     app.register_blueprint(dashboard_bp)
+    app.register_blueprint(questionpage_bp)
     
     return app
 

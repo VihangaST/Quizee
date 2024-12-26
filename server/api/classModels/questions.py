@@ -5,6 +5,7 @@ class Question(db.Model):
     id = db.Column(db.Integer, primary_key=True,autoincrement=True)
     question = db.Column(db.String(150))
     correct_ans = db.Column(db.Integer)
+    description = db.Column(db.String(300))
 
 
 def _repr_(self):
