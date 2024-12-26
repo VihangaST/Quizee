@@ -13,27 +13,10 @@ export default function Navbar() {
 
   return (
     <nav className="navbar">
-    <h1>hello</h1>
+    <h1>Merry Christmas</h1>
       <div className="">
         {/* Left: Logo */}
         <h1 className="text-xl font-bold">Quizee</h1>
-
-        {/* Center: Navigation Links */}
-        {/* <div className="space-x-24">
-          <a
-            href="/userprofile"
-            className="text-gray-400 hover:text-gray-100 transition duration-200"
-          >
-            User Profile
-          </a>
-          <a
-            href="/QuizzesList"
-            className="text-gray-400 hover:text-gray-100 transition duration-200"
-          >
-            Rent places
-          </a>
-        </div> */}
-
         {/* Right: Logout Button */}
         <button
           onClick={handleLogout}
@@ -42,6 +25,7 @@ export default function Navbar() {
           Back
         </button>
       </div>
+      
     </nav>
   );
 }
