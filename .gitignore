@@ -23,8 +23,13 @@ dist-ssr
 *.sln
 *.sw?
 
+*.pyc
+__pycache__/
+
+
 public_key.pem
 private_key.pem
+
 
 *.pyd
 *.dll
