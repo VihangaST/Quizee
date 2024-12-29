@@ -13,16 +13,17 @@ export default function Navbar() {
 
   return (
     <nav className="navbar">
-    <h1>Merry Christmas</h1>
+    <h1 className="text-red-400 text-3xl font-bold">Merry Christmas...!</h1>
       <div className="">
         {/* Left: Logo */}
-        <h1 className="text-xl font-bold">Quizee</h1>
+        {/* text-center text-2xl font-bold text-gray-900 */}
+        <h1 className="text-xl font-bold">FestIQ</h1>
         {/* Right: Logout Button */}
         <button
           onClick={handleLogout}
           className="bg-red-500 hover:bg-red-600 text-white py-1 px-4 rounded"
         >
-          Back
+          End
         </button>
       </div>
       
