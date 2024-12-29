@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import { BASE_URL } from "../constants/config";
-import christmasImage from "../assets/photo.jpg"; // Adjust the path as needed
+import christmasImage from "../assets/photo5.jpg"; // Adjust the path as needed
 
 function Dashboard() {
   const location = useLocation();
@@ -38,32 +38,52 @@ function Dashboard() {
     <>
       
       <div className="relative flex flex-col flex-1 overflow-y-auto overflow-x-hidden">
-        <div
+        {/* <div
           className="w-screen h-[25vh] bg-cover bg-no-repeat bg-center"
           style={{ backgroundImage: `url(${christmasImage})` }}
-        ></div>
+        ></div> */}
+        <div
+  className="w-screen h-[25vh] bg-cover bg-no-repeat bg-center"
+  style={{
+    backgroundImage: `url(${christmasImage})`,
+    backgroundSize: "cover", // Ensures the image covers the div
+    backgroundPosition: "center", // Centers the image
+  }}
+></div>
 
         <div className="mb-4 sm:mb-0">
-          <h1 className="ml-4 text-2xl md:text-3xl text-primary-light dark:text-primary-lighter font-bold"></h1>
-          <h1>Welcome, {username}!</h1>
-          <p>Your score is: {score}</p>
+          <h1 className="ml-4 mt-5 text-2xl md:text-3xl text-primary-light dark:text-primary-lighter font-bold"></h1>
+          <h1 className="text-5xl">Welcome, {username}!</h1>
+          <p className="text-2xl font-bold">Available Points: {score}</p>
         </div>
 
         {/* Question Cards */}
         {loading ? (
           <div className="text-center text-lg">Loading questions...</div>
         ) : (
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 mt-8">
-            {Array.from({ length: questionCount }, (_, i) => (
-              <button
-                key={i + 1}
-                onClick={() => handleQuestionClick(i + 1)}
-                className="flex items-center justify-center w-full h-30 bg-black text-white font-bold text-lg rounded-lg shadow-lg hover:bg-red-500 transition duration-200"
-              >
-                {i + 1}
-              </button>
-            ))}
-          </div>
+          // <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 mt-8">
+          //   {Array.from({ length: questionCount }, (_, i) => (
+          //     <button
+          //       key={i + 1}
+          //       onClick={() => handleQuestionClick(i + 1)}
+          //       className="flex items-center justify-center w-full h-30 bg-black text-white font-bold text-lg rounded-lg shadow-lg hover:bg-red-400 transition duration-200"
+          //     >
+          //       {i + 1}
+          //     </button>
+          //   ))}
+          // </div>
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 mt-5">
+  {Array.from({ length: Math.min(questionCount, 10) }, (_, i) => (
+    <button
+      key={i + 1}
+      onClick={() => handleQuestionClick(i + 1)}
+      className="flex text-3xl items-center justify-center w-full h-40 bg-black text-white rounded-lg shadow-lg hover:bg-red-400 transition duration-200"
+    >
+      {i + 1}
+    </button>
+  ))}
+</div>
+
         )}
       </div>
     </>
