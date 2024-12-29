@@ -1,2 +1,2 @@
-# renthub-code
- Short stay rental place booking management system
+# Quizee
+ Web application as a quiz platform
