@@ -107,7 +107,7 @@ import { BASE_URL } from "../constants/config";
 import loginImage from "../assets/image1.jpg"; // Update with your image path
 
 export default function LoginPage() {
-  const [username, setUsername] = useState("");
+  const [username, setUsername] = useState("071222365");
   const [validationMessage, setValidationMessage] = useState({
     username: "",
   });

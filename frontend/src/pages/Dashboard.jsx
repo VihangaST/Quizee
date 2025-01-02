@@ -31,7 +31,8 @@ function Dashboard() {
 
   const handleQuestionClick = (questionNumber) => {
     alert(`Navigating to question ${questionNumber}`);
-    navigate("/questionpage", { state: { questionNumber } });
+    navigate("/questionpage", { state: { questionNumber,score, username } });
+  
   };
 
   return (
@@ -43,13 +44,13 @@ function Dashboard() {
           style={{ backgroundImage: `url(${christmasImage})` }}
         ></div> */}
         <div
-  className="w-screen h-[25vh] bg-cover bg-no-repeat bg-center"
-  style={{
-    backgroundImage: `url(${christmasImage})`,
-    backgroundSize: "cover", // Ensures the image covers the div
-    backgroundPosition: "center", // Centers the image
-  }}
-></div>
+          className="w-screen h-[25vh] bg-cover bg-no-repeat bg-center"
+          style={{
+            backgroundImage: `url(${christmasImage})`,
+            backgroundSize: "cover", 
+            backgroundPosition: "center", 
+          }}
+        ></div>
 
         <div className="mb-4 sm:mb-0">
           <h1 className="ml-4 mt-5 text-2xl md:text-3xl text-primary-light dark:text-primary-lighter font-bold"></h1>
@@ -73,16 +74,19 @@ function Dashboard() {
           //   ))}
           // </div>
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 mt-5">
-  {Array.from({ length: Math.min(questionCount, 10) }, (_, i) => (
-    <button
-      key={i + 1}
-      onClick={() => handleQuestionClick(i + 1)}
-      className="flex text-3xl items-center justify-center w-full h-40 bg-black text-white rounded-lg shadow-lg hover:bg-red-400 transition duration-200"
-    >
-      {i + 1}
-    </button>
-  ))}
-</div>
+            {Array.from({ length: questionCount }, (_, i) => i + 1)
+    .sort(() => Math.random() - 0.5) // Randomize the array
+    .slice(0, 10) // Take the first 10 items
+    .map((number) => (
+      <button
+        key={number}
+        onClick={() => handleQuestionClick(number)}
+        className="flex items-center justify-center w-full h-40 bg-black text-white font-bold text-lg rounded-lg shadow-lg hover:bg-red-400 transition duration-200" // Increased height with h-40
+      >
+        {number}
+      </button>
+    ))}
+          </div>
 
         )}
       </div>
