@@ -8,8 +8,8 @@ function Dashboard() {
   const { score, username } = location.state || {};
   const navigate = useNavigate();
 
-  const [questionCount, setQuestionCount] = useState(0); // State to store the question count
-  const [loading, setLoading] = useState(true); // State to track loading state
+  const [questionCount, setQuestionCount] = useState(0);
+  const [loading, setLoading] = useState(true);
 
   // Fetch question count from API
   useEffect(() => {
