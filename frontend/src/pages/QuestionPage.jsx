@@ -160,7 +160,7 @@ export default function QuestionPage() {
   useEffect(() => {
     const fetchQuestionData = async () => {
       try {
-        const response = await fetch(`${BASE_URL}/questionpage/question`);
+        const response = await fetch(`${BASE_URL}/questionpage/question?number=${questionNumber}`);
         if (response.ok) {
           const data = await response.json();
           setQuestionData(data);
@@ -175,6 +175,7 @@ export default function QuestionPage() {
     };
 
     fetchQuestionData();
+    alert(`questionNumber: ${questionNumber}, username: ${username}`);
   }, [questionNumber]);
 
   const handleAnswer = async (optionId) => {

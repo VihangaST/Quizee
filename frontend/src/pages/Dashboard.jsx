@@ -75,17 +75,17 @@ function Dashboard() {
           // </div>
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 mt-5">
             {Array.from({ length: questionCount }, (_, i) => i + 1)
-    .sort(() => Math.random() - 0.5) // Randomize the array
-    .slice(0, 10) // Take the first 10 items
-    .map((number) => (
-      <button
-        key={number}
-        onClick={() => handleQuestionClick(number)}
-        className="flex items-center justify-center w-full h-40 bg-black text-white font-bold text-lg rounded-lg shadow-lg hover:bg-red-400 transition duration-200" // Increased height with h-40
-      >
-        {number}
-      </button>
-    ))}
+          .sort(() => Math.random() - 0.5) // Randomize the array
+          .slice(0, 10) // Take the first 10 items
+          .map((number) => (
+            <button
+              key={number}
+              onClick={() => handleQuestionClick(number)}
+              className="flex items-center justify-center w-full h-40 bg-black text-white font-bold text-lg rounded-lg shadow-lg hover:bg-red-400 transition duration-200" // Increased height with h-40
+            >
+              {number}
+            </button>
+          ))}
           </div>
 
         )}
