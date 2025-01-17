@@ -6,6 +6,7 @@ export default function Navbar() {
 
   const handleLogout = () => {
     // Clear user authentication data (e.g., token)
+    localStorage.removeItem("questionsClicked");
     localStorage.removeItem("token");
     // Navigate to the login page
     navigate("/login");
