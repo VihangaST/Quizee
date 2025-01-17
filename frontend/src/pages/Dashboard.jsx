@@ -133,6 +133,7 @@ import React, { useState, useEffect } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import { BASE_URL } from "../constants/config";
 import christmasImage from "../assets/photo5.jpg";
+import finalImageSanta from "../assets/finalpagesanta.png"
 
 function Dashboard() {
   const location = useLocation();
@@ -256,6 +257,11 @@ function Dashboard() {
         <div className="fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center z-50">
           <div className="bg-white p-6 rounded-lg shadow-lg max-w-sm text-center">
             <h2 className="text-2xl text-gray-700 font-bold mb-4">{feedback1}</h2>
+            <img
+                src={finalImageSanta}
+                alt="Feedback Illustration"
+                className="w-full h-40 object-cover my-4"
+              />
             <p className="text-lg text-gray-700 mb-6">{feedback2}</p>
             <div className="mt-0">
                 <p className="text-gray-700">
