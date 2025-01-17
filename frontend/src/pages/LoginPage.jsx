@@ -139,7 +139,7 @@ export default function LoginPage() {
 
       if (response.ok) {
         const data = await response.json();
-        alert(`Response: ${JSON.stringify(data)}`);
+        // alert(`Response: ${JSON.stringify(data)}`);
         localStorage.setItem("token", data.token);
         
         navigate("/Dashboard", { state: { score: data.score, username,count:1 } });

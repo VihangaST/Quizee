@@ -175,7 +175,7 @@ export default function QuestionPage() {
     };
 
     fetchQuestionData();
-    alert(`questionNumber: ${questionNumber}, username: ${username}`);
+    // alert(`questionNumber: ${questionNumber}, username: ${username}`);
   }, [questionNumber]);
 
   const handleAnswer = async (optionId) => {
