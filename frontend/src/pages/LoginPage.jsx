@@ -101,7 +101,7 @@
 // }
 
 
-import React, { useState } from "react";
+import React, { useState , useEffect} from "react";
 import { useNavigate } from "react-router-dom";
 import { BASE_URL } from "../constants/config";
 import loginImage from "../assets/image1.jpg"; // Update with your image path
@@ -112,6 +112,11 @@ export default function LoginPage() {
     username: "",
   });
   const navigate = useNavigate();
+  
+  useEffect(() => {
+    // Reset `questionsClicked` on login
+    localStorage.setItem("questionsClicked", "0");
+  }, []);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -136,7 +141,8 @@ export default function LoginPage() {
         const data = await response.json();
         alert(`Response: ${JSON.stringify(data)}`);
         localStorage.setItem("token", data.token);
-        navigate("/Dashboard", { state: { score: data.score, username } });
+        
+        navigate("/Dashboard", { state: { score: data.score, username,count:1 } });
       } else {
         setValidationMessage({
           ...validationMessage,

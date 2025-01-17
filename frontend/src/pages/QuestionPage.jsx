@@ -188,7 +188,7 @@ export default function QuestionPage() {
       setScore((prevScore) => prevScore + 10);
       // Update score in the backend
       try {
-        await fetch(`${BASE_URL}/update-score`, {
+        await fetch(`${BASE_URL}/questionpage/updatescore`, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ username, score: score + 10 }),

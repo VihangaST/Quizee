@@ -6,6 +6,7 @@ import base64
 from cryptography.hazmat.primitives import hashes
 import jwt
 import datetime
+from extensions import db
 
 import base64
 from cryptography.hazmat.primitives import hashes
@@ -60,7 +61,7 @@ def authenticate():
         # Secret key for encoding and decoding JWT
     
         if not username:
-            return jsonify({"message": "Username and password are required"}), 400
+            return jsonify({"message": "Username is required"}), 400
 
         # Query the database for the user
         loginuser = Users.query.filter_by(PhoneNumber=username).first()
@@ -73,10 +74,23 @@ def authenticate():
                             "message": "Login successful",
                             "user": {"userID": loginuser.PhoneNumber},
                             "score": score,
+                            "questionanswered":0,
                             "token": token
                         }), 200
         else:
-            return jsonify({"message": "User not found"}), 404
+            # New user registration
+            new_user = Users(PhoneNumber=username, Points=0)  # Default points set to 0
+            db.session.add(new_user)
+            db.session.commit()
+
+            return jsonify({
+                "message": "New user registered successfully",
+                "user": {"userID": username},
+                "score": 0,
+                "questionanswered": 0,
+                "token": 6233  # Replace with actual token generation logic
+            }), 201
+
     except Exception as e:
         print("Error during decryption - " + str(e))
         return jsonify({"message": "Error during login"}), 500
