@@ -142,7 +142,8 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import { BASE_URL } from "../constants/config";
-import santaImage from "../assets/santa1.jpg"; // Update with your image path
+import santaImage from "../assets/santa1.jpg"; 
+import santaWrong from "../assets/santawrong.png";
 
 export default function QuestionPage() {
   const navigate = useNavigate();
@@ -184,7 +185,7 @@ export default function QuestionPage() {
     setModalOpen(true);
 
     if (optionId === questionData.correctOption) {
-      setFeedback("Correct! 🎉 You earned 10 points.");
+      setFeedback("Correct! 🎉 You Earned 10 points.");
       setScore((prevScore) => prevScore + 10);
       // Update score in the backend
       try {
@@ -252,14 +253,19 @@ export default function QuestionPage() {
           <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
             <div className="bg-white w-96 p-6 rounded-lg shadow-lg">
               <h2 className="text-2xl font-bold text-red-800">
-                {feedback.includes("Correct") ? "Great Job!" : "Try Again!"}
+                {feedback.includes("Correct") ? "Great Job!" : "Wrong!"}
               </h2>
-              <img
+              {/* <img
                 src={santaImage}
                 alt="Feedback Illustration"
                 className="w-full h-40 object-cover my-4"
+              /> */}
+              <img
+                src={feedback.includes("Correct") ? santaImage : santaWrong}
+                alt="Feedback Illustration"
+                className="w-full h-40 object-cover my-4"
               />
-              <p className="mt-4 text-gray-600">{feedback}</p>
+              <p className="font-bold mt-4 text-gray-600">{feedback}</p>
               {questionData?.description && (
                 <p className="mt-2 text-sm text-gray-500">
                   {questionData.description}

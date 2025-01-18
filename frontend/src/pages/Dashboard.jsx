@@ -134,6 +134,7 @@ import { useNavigate, useLocation } from "react-router-dom";
 import { BASE_URL } from "../constants/config";
 import christmasImage from "../assets/photo5.jpg";
 import finalImageSanta from "../assets/finalpagesanta.png"
+import santaDiscount from "../assets/santadiscount.jpg"
 
 function Dashboard() {
   const location = useLocation();
@@ -185,14 +186,14 @@ function Dashboard() {
 
     if (updatedCount > 3) {
       if (score >= 30) {
-        setFeedback1("Congratulations!");
-        setFeedback2("You have earn 10% discount on your next purchase! 🎉");
+        setFeedback1("CONGRATULATIONS!");
+        setFeedback2("You've Earned 10% DISCOUNT on Your Next Purchase! 🎉");
         setShowModal(true); // Show modal when the user wins
         handleFinalScore(score);
       }
       else{
-        setFeedback1("Try Again!");
-        setFeedback2("You have reached the maximum number of questions!");
+        setFeedback1("SEE YOU NEXT TIME!");
+        setFeedback2("You've Reached Maximum Number of Questions!");
         setShowModal(true);
       }
 
@@ -258,11 +259,12 @@ function Dashboard() {
           <div className="bg-white p-6 rounded-lg shadow-lg max-w-sm text-center">
             <h2 className="text-2xl text-gray-700 font-bold mb-4">{feedback1}</h2>
             <img
-                src={finalImageSanta}
+                // src={finalImageSanta}
+                src={feedback1.includes("CONGRATULATIONS!") ? santaDiscount : finalImageSanta}
                 alt="Feedback Illustration"
                 className="w-full h-40 object-cover my-4"
               />
-            <p className="text-lg text-gray-700 mb-6">{feedback2}</p>
+            <p className="text-lg font-semibold text-red-600 mb-4">{feedback2}</p>
             <div className="mt-0">
                 <p className="text-gray-700">
                   <strong>Username:</strong> {username}
