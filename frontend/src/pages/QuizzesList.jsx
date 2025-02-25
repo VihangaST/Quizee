@@ -1,8 +1,6 @@
 import React,{useEffect, useState} from "react";
 import { BASE_URL } from "../constants/config";
-import Property from "./Property";
 import { useNavigate } from "react-router-dom";
-// Example data for cards
 
 export default function QuizzesList() {
   const navigate = useNavigate();

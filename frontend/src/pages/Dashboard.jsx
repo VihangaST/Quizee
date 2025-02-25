@@ -187,7 +187,7 @@ function Dashboard() {
     if (updatedCount > 3) {
       if (score >= 30) {
         setFeedback1("CONGRATULATIONS!");
-        setFeedback2("You've Earned 10% DISCOUNT on Your Next Purchase! 🎉");
+        setFeedback2("You've Earned 5% DISCOUNT on Your Next Purchase! 🎉");
         setShowModal(true); // Show modal when the user wins
         handleFinalScore(score);
       }
@@ -196,9 +196,7 @@ function Dashboard() {
         setFeedback2("You've Reached Maximum Number of Questions!");
         setShowModal(true);
       }
-
-
-
+      
       setQuestionsClicked(0);
       localStorage.removeItem("questionsClicked");
       localStorage.removeItem("token");
@@ -255,7 +253,7 @@ function Dashboard() {
 
       {/* Modal */}
       {showModal && (
-        <div className="fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center z-50">
+        <div className="fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center z-50 ">
           <div className="bg-white p-6 rounded-lg shadow-lg max-w-sm text-center">
             <h2 className="text-2xl text-gray-700 font-bold mb-4">{feedback1}</h2>
             <img

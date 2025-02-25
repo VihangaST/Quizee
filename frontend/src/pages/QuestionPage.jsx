@@ -157,6 +157,11 @@ export default function QuestionPage() {
   const [feedback, setFeedback] = useState("");
   const [score, setScore] = useState(initialScore || 0);
   const [loading, setLoading] = useState(true);
+  const [timeLeft, setTimeLeft] = useState(60); // Initialize timer with 60 seconds
+
+  const [alertOpen, setAlertOpen] = useState(false);
+  
+
 
   useEffect(() => {
     const fetchQuestionData = async () => {
@@ -179,6 +184,23 @@ export default function QuestionPage() {
     // alert(`questionNumber: ${questionNumber}, username: ${username}`);
   }, [questionNumber]);
 
+  // Timer Effect
+  useEffect(() => {
+    if (isAnswered) return; 
+
+    if (timeLeft <= 0) {
+      alert("Time is out!");
+      navigate("/dashboard", { state: { username, score } });
+      return;
+    }
+
+    const timer = setInterval(() => {
+      setTimeLeft((prevTime) => prevTime - 1);
+    }, 1000);
+
+    return () => clearInterval(timer); // Cleanup timer
+  }, [timeLeft, navigate, username, score]);
+
   const handleAnswer = async (optionId) => {
     setSelectedOption(optionId);
     setIsAnswered(true);
@@ -200,6 +222,10 @@ export default function QuestionPage() {
     } else {
       setFeedback("Wrong! ❌ Try again.");
     }
+  };
+
+  const handleAlert = () => {
+    setAlertOpen(false);
   };
 
   const closeModal = () => {
@@ -227,9 +253,11 @@ export default function QuestionPage() {
   const { question, options } = questionData;
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-red-500 p-8">
-      <div className="max-w-xl w-full bg-white shadow-md rounded-lg p-6">
+    <div className="max-h-screen flex items-center justify-center bg-red-500 p-8">
+      <div className="max-w-xl bg-white shadow-md rounded-lg p-6">
         <h1 className="text-xl font-bold text-gray-800 mb-4">{question}</h1>
+        {/* Timer Display */}
+        
         <div className="grid grid-cols-1 gap-4">
           {options.map((option) => (
             <button
@@ -288,7 +316,16 @@ export default function QuestionPage() {
             </div>
           </div>
         )}
+
+
+        
+        
       </div>
+      <div className="text-red-300 font-bold m-4">
+      {/* <h1>⏳ Time Left: </h1> */}
+      {/* <h2 className="text-2xl">⏳ Time Left: </h2> */}
+      <h1>⏳ Time Left: {timeLeft}s</h1>
+        </div>
     </div>
   );
 }

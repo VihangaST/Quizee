@@ -46,8 +46,7 @@ const CustomCalendar = () => {
         onChange={setValue} 
         value={value} 
         tileClassName={getTileClass}
-        tileContent={tileContent}
-        
+        tileContent={tileContent}       
       />
     </div>
   );
