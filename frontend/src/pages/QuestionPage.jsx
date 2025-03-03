@@ -224,10 +224,6 @@ export default function QuestionPage() {
     }
   };
 
-  const handleAlert = () => {
-    setAlertOpen(false);
-  };
-
   const closeModal = () => {
     setModalOpen(false);
     if (isAnswered) {

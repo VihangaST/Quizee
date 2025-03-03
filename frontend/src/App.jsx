@@ -16,14 +16,14 @@ function App() {
 
 function AppContent() {
   const location = useLocation();
-  const excludeNavbarRoutes = ["/login", "/signup"];
+  const excludeNavbarRoutes = ["/"];
 
   return (
     <>
       {!excludeNavbarRoutes.includes(location.pathname) && <Navbar />}
       <Routes>
         {/* <Route path="/" element={<Navigate to="/login" />} /> */}
-        <Route path="/login" element={<LoginPage />} />
+        <Route path="/" element={<LoginPage />} />
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/questionpage" element={<QuestionPage/>} />
         <Route path="/QuizzesList" element={<QuizzesList/>} />

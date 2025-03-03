@@ -5,14 +5,14 @@ import Navbar from "./Navbar";
 
 function App() {
   const location = useLocation();
-  const excludeNavbarRoutes = ["/login"];
+  const excludeNavbarRoutes = ["/"];
 
   return (
     <div>
       {/* Conditionally render Navbar */}
       {!excludeNavbarRoutes.includes(location.pathname) && <Navbar />}
       <Routes>
-        <Route path="/login" element={<LoginPage />} />
+        <Route path="/" element={<LoginPage />} />
         <Route path="/dashboard" element={<Dashboard />} />
       </Routes>
     </div>

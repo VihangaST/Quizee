@@ -9,7 +9,7 @@ export default function Navbar() {
     localStorage.removeItem("questionsClicked");
     localStorage.removeItem("token");
     // Navigate to the login page
-    navigate("/login");
+    navigate("/");
   };
 
   return (

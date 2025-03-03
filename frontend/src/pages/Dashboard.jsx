@@ -1,134 +1,3 @@
-// import React, { useState, useEffect } from "react";
-// import { useNavigate, useLocation } from "react-router-dom";
-// import { BASE_URL } from "../constants/config";
-// import christmasImage from "../assets/photo5.jpg";
-
-// function Dashboard() {
-//   const location = useLocation();
-//   const { score, username } = location.state || {};
-//   const navigate = useNavigate();
-
-//   const [questionCount, setQuestionCount] = useState(0);
-//   const [loading, setLoading] = useState(true);
-//   const [questionsClicked, setQuestionsClicked] = useState(() => {
-//     // Retrieve the value from localStorage, defaulting to 0 if not found
-//     return parseInt(localStorage.getItem("questionsClicked") || "0", 10);
-//   });
-
-//   // Fetch question count from API
-//   useEffect(() => {
-//     const fetchQuestionCount = async () => {
-//       try {
-//         const response = await fetch(`${BASE_URL}/dashboard/questioncount`);
-//         const data = await response.json();
-//         setQuestionCount(data.count);
-//       } catch (error) {
-//         console.error("Error fetching question count:", error);
-//       } finally {
-//         setLoading(false);
-//       }
-//     };
-
-//     fetchQuestionCount();
-//   }, []);
-
-//   const handleFinalScore = async (score) => {
-  
-//       // Update score in the backend
-//       try {
-//         await fetch(`${BASE_URL}/dashboard/finalscore`, {
-//           method: "POST",
-//           headers: { "Content-Type": "application/json" },
-//           body: JSON.stringify({ username, score: score-30 }),
-//         });
-//       } catch (error) {
-//         console.error("Error updating score:", error);
-//       }
-  
-//   };
-
-//   const handleQuestionClick = (questionNumber) => {
-//     const updatedCount = questionsClicked + 1;
-//     setQuestionsClicked(updatedCount);
-
-//     // Save the updated count to localStorage
-//     localStorage.setItem("questionsClicked", updatedCount);
-
-//     if(updatedCount>3)
-//     {
-      
-//       alert(`You have reached the maximum number of questions! ${score} Try Again... Merry christmas`);
-//       if(score>=30)
-//       {
-//         alert(`Congratulations! You have won the game!`);
-//         handleFinalScore(score);
-        
-//         // score=score-30;
-//       }
-
-//       setQuestionsClicked(0);
-//       // Clear `questionsClicked` and user authentication data
-//       localStorage.removeItem("questionsClicked");
-//       // Clear user authentication data (e.g., token)
-//       localStorage.removeItem("token");
-//       // Navigate to the login page
-//       navigate("/login");
-//       return;
-
-//     }
-//     setQuestionsClicked(updatedCount);
-//     localStorage.setItem("questionsClicked", updatedCount);
-
-//     // Navigate to the question page
-//     navigate("/questionpage", { state: { questionNumber, score, username } });
-//   };
-
-//   return (
-//     <div className="relative flex flex-col flex-1 overflow-y-auto overflow-x-hidden">
-//       <div
-//         className="w-screen h-[25vh] bg-cover bg-no-repeat bg-center"
-//         style={{
-//           backgroundImage: `url(${christmasImage})`,
-//           backgroundSize: "cover",
-//           backgroundPosition: "center",
-//         }}
-//       ></div>
-
-//       <div className="mb-4 sm:mb-0">
-//         <h1 className="text-5xl">Welcome, {username}!</h1>
-//         <p className="text-2xl font-bold">Available Points: {score}</p>
-//         <p className="text-xl mt-2">
-//           Questions Answered: <span className="font-bold">{questionsClicked}/3</span>
-//         </p>
-//       </div>
-
-//       {loading ? (
-//         <div className="text-center text-lg">Loading questions...</div>
-//       ) : (
-//         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 mt-5">
-//           {Array.from({ length: questionCount }, (_, i) => i + 1)
-//             .sort(() => Math.random() - 0.5)
-//             .slice(0, 10)
-//             .map((number) => (
-//               <button
-//                 key={number}
-//                 onClick={() => handleQuestionClick(number)}
-//                 className="flex items-center justify-center w-full h-40 bg-black text-white font-bold text-lg rounded-lg shadow-lg hover:bg-red-400 transition duration-200"
-//               >
-//                 {number}
-//               </button>
-//             ))}
-//         </div>
-//       )}
-      
-//     </div>
-    
-//   );
-// }
-
-// export default Dashboard;
-
-
 import React, { useState, useEffect } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import { BASE_URL } from "../constants/config";
@@ -171,12 +40,33 @@ function Dashboard() {
       await fetch(`${BASE_URL}/dashboard/finalscore`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ username, score: score - 30 }),
+        body: JSON.stringify({ username, score: score - 30 ,isWinner:true}),
       });
     } catch (error) {
       console.error("Error updating score:", error);
     }
   };
+
+  const sendSMS = async () => {
+    try {
+      const response = await fetch(`${BASE_URL}/dashboard/send-sms`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ mobile_number: mobileNumber, message }),
+      });
+
+      const data = await response.json();
+      if (data.success) {
+        alert("SMS Sent Successfully!");
+      } else {
+        alert("Failed to send SMS: " + data.message);
+      }
+    } catch (error) {
+      console.error("Error sending SMS:", error);
+      alert("Error sending SMS");
+    }
+  };
+
 
   const handleQuestionClick = (questionNumber) => {
     const updatedCount = questionsClicked + 1;
@@ -190,6 +80,7 @@ function Dashboard() {
         setFeedback2("You've Earned 5% DISCOUNT on Your Next Purchase! 🎉");
         setShowModal(true); // Show modal when the user wins
         handleFinalScore(score);
+        sendSMS();
       }
       else{
         setFeedback1("SEE YOU NEXT TIME!");
@@ -210,7 +101,7 @@ function Dashboard() {
     setShowModal(false); // Close the modal
     setFeedback1("");
     setFeedback2("");
-    navigate("/login"); // Navigate to the login page
+    navigate("/"); // Navigate to the login page
   };
 
   return (
@@ -272,7 +163,6 @@ function Dashboard() {
                 </p>
               </div>
             <p className="text-lg font-bold text-gray-500 mb-5 mt-3">Merry Christmas!</p> 
-           
             
             <button
               onClick={closeModalAndNavigate}

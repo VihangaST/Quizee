@@ -6,7 +6,7 @@ from config import Config
 from extensions import db
 # Import the login blueprint
 from routes.authentication.login import login_bp
-from routes.property.property import property_bp
+# from routes.property.property import property_bp
 from routes.dashboard.dashboard import dashboard_bp
 from routes.questionpage.questionpage import questionpage_bp
 
@@ -32,7 +32,7 @@ def create_app():
 
     # Register the login blueprint  
     app.register_blueprint(login_bp)
-    app.register_blueprint(property_bp)
+    # app.register_blueprint(property_bp)
     app.register_blueprint(dashboard_bp)
     app.register_blueprint(questionpage_bp)
     

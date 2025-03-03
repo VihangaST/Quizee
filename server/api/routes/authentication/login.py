@@ -74,6 +74,7 @@ def authenticate():
                             "message": "Login successful",
                             "user": {"userID": loginuser.PhoneNumber},
                             "score": score,
+                            "isWinner": loginuser.IsWinner,
                             "questionanswered":0,
                             "token": token
                         }), 200

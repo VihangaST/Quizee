@@ -1,6 +1,5 @@
 from flask import Blueprint, jsonify, request, current_app
 from classModels.questions import Question
-from classModels.listings import Listing
 import joblib
 from extensions import db
 from classModels.user import Users
@@ -32,7 +31,9 @@ def update_final_Score():
         data = request.get_json()
         username = data.get('username')
         new_score = data.get('score')
-        print(username)
+        isWinner=data.get('isWinner')
+
+        print('IsWinner:',isWinner)
         print('final score',new_score)
 
         if not username or new_score is None:
@@ -46,6 +47,7 @@ def update_final_Score():
 
         # Update the user's score
         user.Points = new_score
+        user.IsWinner=isWinner
         db.session.commit()
 
         return jsonify({"message": "Score updated successfully", "new_score": user.Points}), 200
@@ -53,3 +55,27 @@ def update_final_Score():
     except Exception as e:
         # db.session.rollback()
         return jsonify({"error": f"An error occurred: {str(e)}"}), 500
+
+
+@dashboard_bp.route("/dashboard/send-sms", methods=["POST"])
+def send_sms():
+    data = request.json  # Get JSON data from React frontend
+    mobile_number = data.get("mobile_number")
+    message_text = data.get("message")
+
+    if not mobile_number or not message_text:
+        return jsonify({"error": "Mobile number and message are required"}), 400
+
+    # Send SMS
+    response = sms.send_message({
+        "from": "FestIQ",
+        "to": mobile_number,
+        "text": message_text,
+    })
+
+    # Check response
+    if response["messages"][0]["status"] == "0":
+        return jsonify({"success": True, "message": "SMS sent successfully"})
+    else:
+        return jsonify({"success": False, "message": response["messages"][0]["error-text"]}), 400
+
