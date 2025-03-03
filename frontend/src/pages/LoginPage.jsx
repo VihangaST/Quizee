@@ -76,8 +76,7 @@ export default function LoginPage() {
           alt="Login Illustration"
           className="w-full h-full object-cover"
         />
-      {/* </div> */}
-
+        
       {/* Right Section: Login Form */}
       <div className="w-full md:w-1/2 flex flex-col justify-center items-center"style={{ backgroundColor: "rgb(232,232,232)" }}>
         <div className="sm:mx-auto sm:w-full sm:max-w-sm">

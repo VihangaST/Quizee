@@ -1,144 +1,3 @@
-// import React, { useState, useEffect } from "react";
-// import { useNavigate, useLocation } from "react-router-dom";
-// import { BASE_URL } from "../constants/config";
-// import santaImage from "../assets/santa1.jpg"; // Update with your image path
-
-// export default function QuestionPage() {
-//   const navigate = useNavigate();
-//   const location = useLocation();
-//   const { questionNumber,score, username } = location.state || {};
-
-//   const [questionData, setQuestionData] = useState(null);
-//   const [selectedOption, setSelectedOption] = useState(null);
-//   const [isAnswered, setIsAnswered] = useState(false);
-//   const [modalOpen, setModalOpen] = useState(false);
-//   const [feedback, setFeedback] = useState("");
-//   const [loading, setLoading] = useState(true);
-
-//   useEffect(() => {
-//     // Fetch question data from the backend
-//     const fetchQuestionData = async () => {
-//       try {
-//         // alert(questionNumber)
-//         const response = await fetch(`${BASE_URL}/questionpage/question`);
-//         if (response.ok) {
-//           const data = await response.json();
-//           setQuestionData(data);
-//         } else {
-//           console.error("Failed to fetch question data");
-//         }
-//       } catch (error) {
-//         console.error("Error fetching question data:", error);
-//       } finally {
-//         setLoading(false);
-//       }
-//     };
-
-//     fetchQuestionData();
-//   }, [questionNumber]);
-
-//   const handleAnswer = (optionId) => {
-//     setSelectedOption(optionId);
-//     setIsAnswered(true);
-//     setModalOpen(true);
-
-//     if (optionId === questionData.correctOption) {
-//       setFeedback( <h2 className="text-2xl font-bold text-red-800">"Correct! 🎉"</h2>);
-//     } else {
-//       setFeedback(<h2 className="text-2xl font-bold text-red-800">"Wrong! ❌"</h2>);
-//     }
-//   };
-
-//   const closeModal = () => {
-//     setModalOpen(false);
-//     if (isAnswered) {
-//       setSelectedOption(null);
-//       setIsAnswered(false);
-//       setFeedback("");
-//       navigate("/dashboard");
-//     }
-//   };
-
-//   if (loading) {
-//     return <div className="min-h-screen flex items-center justify-center">Loading...</div>;
-//   }
-
-//   if (!questionData) {
-//     return (
-//       <div className="min-h-screen flex items-center justify-center">
-//         <p>Failed to load question. Please try again later.</p>
-//       </div>
-//     );
-//   }
-
-//   const { question, options } = questionData;
-
-//   return (
-//     <div className="min-h-screen flex items-center justify-center bg-red-500 p-8">
-//       <div className="max-w-xl w-full bg-white shadow-md rounded-lg p-6">
-//         {/* Question */}
-//         <h1 className="text-xl font-bold text-gray-800 mb-4">{question}</h1>
-        
-//         {/* Options */}
-//         <div className="grid grid-cols-1 gap-4">
-//           {options.map((option) => (
-//             <button
-//               key={option.id}
-//               onClick={() => handleAnswer(option.id)}
-//               className={`w-full text-left py-3 px-4 border rounded-md ${
-//                 selectedOption === option.id
-//                   ? option.id === questionData.correctOption
-//                     ? "bg-green-100 border-green-500"
-//                     : "bg-red-100 border-red-500"
-//                   : "hover:bg-gray-600"
-//               }`}
-//               disabled={isAnswered}
-//             >
-//               {option.text}
-//             </button>
-//           ))}
-//         </div>
-
-//         {/* Feedback Modal */}
-//         {modalOpen && (
-//           <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
-//             <div className="bg-white w-96 p-6 rounded-lg shadow-lg">
-//               <h2 className="text-2xl font-bold text-red-800">
-//                 {feedback === "Correct! 🎉" ? "Great Job!" : "Try Again!"}
-//               </h2>
-//               <img
-//                   src={santaImage}
-//                   alt="Login Illustration"
-//                   className="w-full h-full object-fit"
-//                 />
-//               <p className="mt-4 text-gray-600">{feedback}</p>
-//               {questionData?.description && (
-//                 <p className="mt-2 text-sm text-gray-500">
-//                   {questionData.description}
-//                 </p>
-//               )}
-//               <div className="mt-4">
-//         <p className="text-gray-700">
-//           <strong>Username:</strong> {username}
-//         </p>
-//         <p className="text-gray-700">
-//           <strong>Score:</strong> {score}
-//         </p>
-//       </div>
-//               <button
-//                 onClick={closeModal}
-//                 className="mt-6 w-full py-2 px-4 bg-black text-white font-semibold rounded-md hover:bg-gray-700"
-//               >
-//                 {isAnswered ? "Next Question" : "Close"}
-//               </button>
-//             </div>
-
-//           </div>
-//         )}
-//       </div>
-//     </div>
-//   );
-// }
 import React, { useState, useEffect } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import { BASE_URL } from "../constants/config";
@@ -149,7 +8,6 @@ export default function QuestionPage() {
   const navigate = useNavigate();
   const location = useLocation();
   const { questionNumber, score: initialScore, username } = location.state || {};
-
   const [questionData, setQuestionData] = useState(null);
   const [selectedOption, setSelectedOption] = useState(null);
   const [isAnswered, setIsAnswered] = useState(false);
@@ -160,8 +18,6 @@ export default function QuestionPage() {
   const [timeLeft, setTimeLeft] = useState(60); // Initialize timer with 60 seconds
 
   const [alertOpen, setAlertOpen] = useState(false);
-  
-
 
   useEffect(() => {
     const fetchQuestionData = async () => {
@@ -279,11 +135,6 @@ export default function QuestionPage() {
               <h2 className="text-2xl font-bold text-red-800">
                 {feedback.includes("Correct") ? "Great Job!" : "Wrong!"}
               </h2>
-              {/* <img
-                src={santaImage}
-                alt="Feedback Illustration"
-                className="w-full h-40 object-cover my-4"
-              /> */}
               <img
                 src={feedback.includes("Correct") ? santaImage : santaWrong}
                 alt="Feedback Illustration"
@@ -311,11 +162,7 @@ export default function QuestionPage() {
               </button>
             </div>
           </div>
-        )}
-
-
-        
-        
+        )} 
       </div>
       <div className="text-red-300 font-bold m-4">
       {/* <h1>⏳ Time Left: </h1> */}

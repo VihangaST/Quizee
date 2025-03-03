@@ -6,6 +6,5 @@ class Users(db.Model):
     Points = db.Column(db.Integer,nullable=False, default=0)
     IsWinner = db.Column(db.Boolean,nullable=False, default=0)
     
-
 def _repr_(self):
         return f'<LoginUser {self.PhoneNumber}>'

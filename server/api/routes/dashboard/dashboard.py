@@ -4,6 +4,11 @@ import joblib
 from extensions import db
 from classModels.user import Users
 
+from vonage import Auth, Vonage
+from vonage_sms import SmsMessage, SmsResponse
+
+# Initialize Vonage Client
+client = Vonage(Auth(api_key="6545b1a1", api_secret="kb3ISJcaWz204QUY"))
 
 dashboard_bp = Blueprint('dashboard', __name__)
 @dashboard_bp.route('/dashboard/questioncount', methods=['GET'])
@@ -56,26 +61,37 @@ def update_final_Score():
         # db.session.rollback()
         return jsonify({"error": f"An error occurred: {str(e)}"}), 500
 
-
 @dashboard_bp.route("/dashboard/send-sms", methods=["POST"])
 def send_sms():
-    data = request.json  # Get JSON data from React frontend
-    mobile_number = data.get("mobile_number")
-    message_text = data.get("message")
+    try:
+        data = request.json
+        # mobileNumber = data.get("mobile_number")
+        mobileNumber = "94766755859"
+        message_text = data.get("message")
+        print('message_text:',message_text)
 
-    if not mobile_number or not message_text:
-        return jsonify({"error": "Mobile number and message are required"}), 400
+        # print('mobile_number:',mobileNumber)
+        
+        # if not mobileNumber or not message_text:
+        #     return jsonify({"error": "Mobile number and message are required"}), 400
 
-    # Send SMS
-    response = sms.send_message({
-        "from": "FestIQ",
-        "to": mobile_number,
-        "text": message_text,
-    })
+        str1 = "**** FestIQ ****\n\nHey there!"
+        str2 = message_text
+        # mobileNumber = "94716299291"
 
-    # Check response
-    if response["messages"][0]["status"] == "0":
+# ****************************
+        # message = SmsMessage(
+        #     to= mobileNumber,
+        #     from_= "FestIQ",
+        #     text= str1 + str2,
+        # )
+        # # Send SMS
+        # response: SmsResponse = client.sms.send(message)
+        # print(response)
+    
+    # ******************************
         return jsonify({"success": True, "message": "SMS sent successfully"})
-    else:
-        return jsonify({"success": False, "message": response["messages"][0]["error-text"]}), 400
 
+    except Exception as e:
+        print(f"Unexpected Error: {e}")
+        return jsonify({"error": "An unexpected error occurred"}), 500

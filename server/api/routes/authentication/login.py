@@ -18,41 +18,6 @@ SECRET_KEY = 'procall'
 def get_test_message():
     return jsonify("Hello there")
 
-
-# def decrypt_password(ciphertext, private_key):
-#     decoded_ciphertext = base64.b64decode(ciphertext.encode('utf-8'))
-#     plaintext = private_key.decrypt(
-#         decoded_ciphertext,
-#         padding.OAEP(
-#             mgf=padding.MGF1(algorithm=hashes.SHA256()),
-#             algorithm=hashes.SHA256(),
-#             label=None
-#         )
-#     )
-#     price(plaintext.decode)
-#     return plaintext.decode()
-
-# def decrypt_password(ciphertext, private_key):
-#     print('*cipher',ciphertext)
-#     try:
-#         print('*try ')
-#         decoded_ciphertext = base64.b64decode(ciphertext.encode('utf-8'))
-#         print('*decoded_ciphertext',decoded_ciphertext)
-#         plaintext = private_key.decrypt(
-#             decoded_ciphertext,
-#             padding.OAEP(
-#                 mgf=padding.MGF1(algorithm=hashes.SHA256()),
-#                 algorithm=hashes.SHA256(),
-#                 label=None
-#             )
-#         )
-#         print(f"Decrypted Password: {plaintext.decode()}")
-#         return plaintext.decode()
-#     except Exception as e:
-#         print(f"Decryption failed: {e}")
-#         raise e
-
-
 @login_bp.route('/login', methods=['POST'])
 def authenticate():
     try:
@@ -97,16 +62,16 @@ def authenticate():
         return jsonify({"message": "Error during login"}), 500
 
         
-def validate_token(token):
-    try:
-        decoded_token = jwt.decode(token, SECRET_KEY, algorithms=['HS256'])
-        return decoded_token['userId']
-    except jwt.ExpiredSignatureError:
-        # throw the exception to the caller
-        raise jwt.ExpiredSignatureError("Token expired")
-    except jwt.InvalidTokenError:
-         # throw the exception to the caller
-        raise jwt.InvalidTokenError("Invalid token")
-    except Exception as e:
-         # throw the exception to the caller
-        raise e
+# def validate_token(token):
+#     try:
+#         decoded_token = jwt.decode(token, SECRET_KEY, algorithms=['HS256'])
+#         return decoded_token['userId']
+#     except jwt.ExpiredSignatureError:
+#         # throw the exception to the caller
+#         raise jwt.ExpiredSignatureError("Token expired")
+#     except jwt.InvalidTokenError:
+#          # throw the exception to the caller
+#         raise jwt.InvalidTokenError("Invalid token")
+#     except Exception as e:
+#          # throw the exception to the caller
+#         raise e
