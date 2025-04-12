@@ -14,10 +14,6 @@ from cryptography.hazmat.primitives import hashes
 login_bp = Blueprint('login', __name__)
 SECRET_KEY = 'procall'
 
-@login_bp.route('/test')
-def get_test_message():
-    return jsonify("Hello there")
-
 @login_bp.route('/login', methods=['POST'])
 def authenticate():
     try:
@@ -60,18 +56,3 @@ def authenticate():
     except Exception as e:
         print("Error during decryption - " + str(e))
         return jsonify({"message": "Error during login"}), 500
-
-        
-# def validate_token(token):
-#     try:
-#         decoded_token = jwt.decode(token, SECRET_KEY, algorithms=['HS256'])
-#         return decoded_token['userId']
-#     except jwt.ExpiredSignatureError:
-#         # throw the exception to the caller
-#         raise jwt.ExpiredSignatureError("Token expired")
-#     except jwt.InvalidTokenError:
-#          # throw the exception to the caller
-#         raise jwt.InvalidTokenError("Invalid token")
-#     except Exception as e:
-#          # throw the exception to the caller
-#         raise e

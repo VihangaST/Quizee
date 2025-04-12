@@ -17,8 +17,6 @@ export default function QuestionPage() {
   const [loading, setLoading] = useState(true);
   const [timeLeft, setTimeLeft] = useState(60); // Initialize timer with 60 seconds
 
-  const [alertOpen, setAlertOpen] = useState(false);
-
   useEffect(() => {
     const fetchQuestionData = async () => {
       try {
@@ -37,7 +35,6 @@ export default function QuestionPage() {
     };
 
     fetchQuestionData();
-    // alert(`questionNumber: ${questionNumber}, username: ${username}`);
   }, [questionNumber]);
 
   // Timer Effect
@@ -108,8 +105,7 @@ export default function QuestionPage() {
     <div className="max-h-screen flex items-center justify-center bg-red-500 p-8">
       <div className="max-w-xl bg-white shadow-md rounded-lg p-6">
         <h1 className="text-xl font-bold text-gray-800 mb-4">{question}</h1>
-        {/* Timer Display */}
-        
+        {/* Timer Display */}    
         <div className="grid grid-cols-1 gap-4">
           {options.map((option) => (
             <button
@@ -165,8 +161,6 @@ export default function QuestionPage() {
         )} 
       </div>
       <div className="text-red-300 font-bold m-4">
-      {/* <h1>⏳ Time Left: </h1> */}
-      {/* <h2 className="text-2xl">⏳ Time Left: </h2> */}
       <h1>⏳ Time Left: {timeLeft}s</h1>
         </div>
     </div>

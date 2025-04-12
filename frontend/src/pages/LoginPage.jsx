@@ -50,10 +50,7 @@ export default function LoginPage() {
 
       if (response.ok) {
         const data = await response.json();
-        // alert(`Response: ${JSON.stringify(data)}`);
         localStorage.setItem("token", data.token);
-        
-        // alert(data.isWinner);
         if(data.isWinner){
           alert("You have already a Winner! ... Try Again Next Season...");
           return;
@@ -76,12 +73,11 @@ export default function LoginPage() {
 
   return (
     <div className="flex h-screen overflow-y-hidden">
-      {/* <div className="hidden md:block md:w-1/2 h-screen"> */}
-        <img
-          src={loginImage}
-          alt="Login Illustration"
-          className="w-full h-full object-cover"
-        />
+      <img
+        src={loginImage}
+        alt="Login Illustration"
+        className="w-full h-full object-cover"
+      />
         
       {/* Right Section: Login Form */}
       <div className="w-full md:w-1/2 flex flex-col justify-center items-center"style={{ backgroundColor: "rgb(232,232,232)" }}>
@@ -125,7 +121,6 @@ export default function LoginPage() {
                 )}
               </div>
             </div>
-
             <div>
               <button
                 type="submit"

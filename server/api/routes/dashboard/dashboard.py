@@ -1,14 +1,13 @@
 from flask import Blueprint, jsonify, request, current_app
 from classModels.questions import Question
-import joblib
 from extensions import db
 from classModels.user import Users
 
 from vonage import Auth, Vonage
-from vonage_sms import SmsMessage, SmsResponse
+# from vonage_sms import SmsMessage, SmsResponse
 
 # Initialize Vonage Client
-client = Vonage(Auth(api_key="6545b1a1", api_secret="kb3ISJcaWz204QUY"))
+# client = Vonage(Auth(api_key="6545b1a1", api_secret="kb3ISJcaWz204QUY"))
 
 dashboard_bp = Blueprint('dashboard', __name__)
 @dashboard_bp.route('/dashboard/questioncount', methods=['GET'])
