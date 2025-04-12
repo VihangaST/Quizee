@@ -60,38 +60,40 @@ def update_final_Score():
     except Exception as e:
         # db.session.rollback()
         return jsonify({"error": f"An error occurred: {str(e)}"}), 500
-
-@dashboard_bp.route("/dashboard/send-sms", methods=["POST"])
-def send_sms():
-    try:
-        data = request.json
-        # mobileNumber = data.get("mobile_number")
-        mobileNumber = "94766755859"
-        message_text = data.get("message")
-        print('message_text:',message_text)
-
-        # print('mobile_number:',mobileNumber)
-        
-        # if not mobileNumber or not message_text:
-        #     return jsonify({"error": "Mobile number and message are required"}), 400
-
-        str1 = "**** FestIQ ****\n\nHey there!"
-        str2 = message_text
-        # mobileNumber = "94716299291"
-
-# ****************************
-        # message = SmsMessage(
-        #     to= mobileNumber,
-        #     from_= "FestIQ",
-        #     text= str1 + str2,
-        # )
-        # # Send SMS
-        # response: SmsResponse = client.sms.send(message)
-        # print(response)
     
-    # ******************************
-        return jsonify({"success": True, "message": "SMS sent successfully"})
 
-    except Exception as e:
-        print(f"Unexpected Error: {e}")
-        return jsonify({"error": "An unexpected error occurred"}), 500
+# @dashboard_bp.route("/dashboard/send-sms", methods=["POST"])
+# def send_sms():
+#     try:
+#         data = request.json
+#         # mobileNumber = data.get("mobile_number")
+#         mobileNumber = "94766755859"
+#         message_text = data.get("message")
+#         print('message_text:',message_text)
+
+#         # print('mobile_number:',mobileNumber)
+        
+#         # if not mobileNumber or not message_text:
+#         #     return jsonify({"error": "Mobile number and message are required"}), 400
+
+#         str1 = "**** FestIQ ****\n\nHey there!"
+#         str2 = message_text
+#         # mobileNumber = "94716299291"
+
+# # ****************************
+#         # message = SmsMessage(
+#         #     to= mobileNumber,
+#         #     from_= "FestIQ",
+#         #     text= str1 + str2,
+#         # )
+#         # # Send SMS
+#         # response: SmsResponse = client.sms.send(message)
+#         # print(response)
+    
+#     # ******************************
+#         return jsonify({"success": True, "message": "SMS sent successfully"})
+
+#     except Exception as e:
+#         print(f"Unexpected Error: {e}")
+#         return jsonify({"error": "An unexpected error occurred"}), 500
+

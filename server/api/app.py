@@ -6,6 +6,7 @@ from extensions import db
 from routes.authentication.login import login_bp
 from routes.dashboard.dashboard import dashboard_bp
 from routes.questionpage.questionpage import questionpage_bp
+from routes.admin.admin import admin_bp
 
 def create_app():
     app = Flask(__name__)
@@ -30,6 +31,7 @@ def create_app():
     app.register_blueprint(login_bp)
     app.register_blueprint(dashboard_bp)
     app.register_blueprint(questionpage_bp)
+    app.register_blueprint(admin_bp)
     
     return app
 

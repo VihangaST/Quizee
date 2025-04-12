@@ -3,6 +3,7 @@ import LoginPage from './pages/LoginPage';
 import Dashboard from './pages/Dashboard';
 import Navbar from './components/Navbar';
 import QuestionPage from './pages/QuestionPage';
+import AdminDashboard from './pages/AdminDashboard';
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function AppContent() {
         <Route path="/" element={<LoginPage />} />
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/questionpage" element={<QuestionPage/>} />
+        <Route path="/admin" element={<AdminDashboard/>}/>
       </Routes>
     </>
   );
