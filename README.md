@@ -1,4 +1,4 @@
-# Quizee
+# FestIQ
  Web application as a quiz platform
 _________________________________________________________________________________________
  **Login Page**
