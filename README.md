@@ -1,5 +1,8 @@
 # FestIQ
- Web application as a quiz platform
+ Web application as a Quiz platform consisted with festival related questions.
+ This is used as a LAN application for shops and can be used during festive seasons to
+ increase user experience. 
+ 
 _________________________________________________________________________________________
  **Login Page**
 ![image](https://github.com/user-attachments/assets/c56eb238-1b0c-4372-ae93-69c7aba313e7)
