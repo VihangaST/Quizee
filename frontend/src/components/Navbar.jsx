@@ -18,7 +18,7 @@ export default function Navbar() {
       <div className="">
         {/* Left: Logo */}
         {/* text-center text-2xl font-bold text-gray-900 */}
-        <h1 className="text-xl font-bold">FestIQ</h1>
+        <h1 className="text-xl font-bold">Quizee</h1>
         {/* Right: Logout Button */}
         <button
           onClick={handleLogout}

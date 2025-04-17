@@ -62,7 +62,7 @@ function AdminDashboard() {
         />    
       <h2 className="text-xl font-bold text-black m-4">Logged Users</h2>
       </div><div className="overflow-x-auto">
-      <table className="bg-teal-700 table-auto w-full p-2 border border-gray-300 rounded-md">
+      <table className="bg-teal-700 table-auto w-full p-2 border border-gray-300 rounded-lg">
         <thead>
           <tr>
             <th className="px-4 py-2 border">Phone Number</th>

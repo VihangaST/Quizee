@@ -7,6 +7,8 @@ class Config:
     db_user = os.getenv("DB_USERNAME")
     db_password = quote_plus(os.getenv("DB_PASSWORD"))
     db_name = os.getenv("DB_NAME")
+    SECRET_KEY = os.getenv("SECRET_KEY")
+    
 
     SQLALCHEMY_DATABASE_URI = f'mysql+mysqlconnector://{db_user}:{db_password}@localhost/{db_name}'
     SQLALCHEMY_TRACK_MODIFICATIONS = False

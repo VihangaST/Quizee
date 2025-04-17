@@ -1,8 +1,6 @@
-# login.py
 from flask import Blueprint, request, current_app,jsonify
 from classModels.user import Users
 from cryptography.hazmat.primitives.asymmetric import padding
-import base64
 from cryptography.hazmat.primitives import hashes
 import jwt
 import datetime
@@ -12,8 +10,6 @@ import base64
 from cryptography.hazmat.primitives import hashes
 
 login_bp = Blueprint('login', __name__)
-SECRET_KEY = 'procall'
-
 @login_bp.route('/login', methods=['POST'])
 def authenticate():
     try:
@@ -29,7 +25,10 @@ def authenticate():
         if loginuser:
             # Assuming the Users model has a 'score' field
             score = loginuser.Points if loginuser.Points is not None else 0
-            token=6233
+            token = jwt.encode({
+                "user_id": loginuser.PhoneNumber,
+                "exp": datetime.datetime.utcnow() + datetime.timedelta(hours=1)
+            }, current_app.config['SECRET_KEY'], algorithm="HS256")
                     
             return jsonify({
                             "message": "Login successful",
@@ -50,7 +49,7 @@ def authenticate():
                 "user": {"userID": username},
                 "score": 0,
                 "questionanswered": 0,
-                "token": 6233  # Replace with actual token generation logic
+                "token": token 
             }), 201
 
     except Exception as e:
