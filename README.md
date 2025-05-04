@@ -7,35 +7,34 @@ increase user experience.
 ---
 
 **Login Page**
-![image](https://github.com/user-attachments/assets/c56eb238-1b0c-4372-ae93-69c7aba313e7)
+![image](https://github.com/user-attachments/assets/25ef1a72-ccf8-4028-9ac2-0ed2cc82d57e)
 
 ---
 
 **Dashboard**
-![image](https://github.com/user-attachments/assets/26b05439-9043-4026-939b-21b8a93efa36)
-![image](https://github.com/user-attachments/assets/3e786e65-585a-424f-b4b2-9b26ac9f3dd9)
+![image](https://github.com/user-attachments/assets/190acfaf-dbdf-41e0-b210-e8ed2a934a97)
 
 ---
 
 **Question Page**
-![image](https://github.com/user-attachments/assets/cec55283-2318-4b59-a44f-4c4601648d9a)
+![image](https://github.com/user-attachments/assets/7a4526a6-316a-45cf-ba5a-560d39869291)
 
 ---
 
 **User Feedback - Correct Answer**
-![image](https://github.com/user-attachments/assets/52b446c4-670c-4cd1-9bd4-248682393eaf)
+![image](https://github.com/user-attachments/assets/572b91e9-44ff-4e40-a663-7597b545c91a)
 
 ---
 
-**User Feedback - Correct Answer**
-![image](https://github.com/user-attachments/assets/9118786f-a1c2-4dab-9288-874ebe9c2011)
+**User Feedback - Wrong Answer**
+![image](https://github.com/user-attachments/assets/2ee75772-d549-40bd-9c9e-9df12e52bae8)
 
 ---
 
 **User Feedback - Try Again**
-![image](https://github.com/user-attachments/assets/97e06ae8-ed5e-4c67-8ae2-6db76a5f0ea9)
+![image](https://github.com/user-attachments/assets/57c45428-76bc-4393-8629-817da293802d)
 
 ---
 
 **User Feedback - Winner**
-![image](https://github.com/user-attachments/assets/67b82eff-3893-42e9-b7ff-42c1f3c33732)
+![Uploading image.png…]()
