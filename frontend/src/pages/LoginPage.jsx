@@ -83,7 +83,7 @@ export default function LoginPage() {
       <div className="w-full md:w-1/2 flex flex-col justify-center items-center"style={{ backgroundColor: "rgb(232,232,232)" }}>
         <div className="sm:mx-auto sm:w-full sm:max-w-sm">
         <h1 className="text-center font-bold text-red-500 mb-20">
-          FestIQ
+          Quizee
           </h1>
           <h1 className="text-center text-2xl font-bold text-gray-900">Login</h1>
          

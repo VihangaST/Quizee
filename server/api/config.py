@@ -14,5 +14,6 @@ class Config:
     SQLALCHEMY_TRACK_MODIFICATIONS = False
 
     BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-    PRIVATE_KEY_PATH = os.path.join(BASE_DIR, os.getenv("PRIVATE_KEY_PATH"))
-    PUBLIC_KEY_PATH = os.path.join(BASE_DIR, os.getenv("PUBLIC_KEY_PATH"))
+    UPLOAD_FOLDER = os.path.join(BASE_DIR, 'uploads')
+    # PRIVATE_KEY_PATH = os.path.join(BASE_DIR, os.getenv("PRIVATE_KEY_PATH"))
+    # PUBLIC_KEY_PATH = os.path.join(BASE_DIR, os.getenv("PUBLIC_KEY_PATH"))

@@ -16,16 +16,16 @@ def create_app():
     db.init_app(app)
 
     # Load RSA keys
-    with open(Config.PRIVATE_KEY_PATH, "rb") as key_file:
-        app.private_key = serialization.load_pem_private_key(
-            key_file.read(),
-            password=None,
-        )
+    # with open(Config.PRIVATE_KEY_PATH, "rb") as key_file:
+    #     app.private_key = serialization.load_pem_private_key(
+    #         key_file.read(),
+    #         password=None,
+    #     )
 
-    with open(Config.PUBLIC_KEY_PATH, "rb") as key_file:
-        app.public_key = serialization.load_pem_public_key(
-            key_file.read(),
-        )
+    # with open(Config.PUBLIC_KEY_PATH, "rb") as key_file:
+    #     app.public_key = serialization.load_pem_public_key(
+    #         key_file.read(),
+    #     )
 
     # Register the login blueprint  
     app.register_blueprint(login_bp)
